@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Post</title>
+        {% extends 'general/base.html' %}
+        {% include 'writer/base.html' %}
+    </head>
+    <body>
+        {% block content %}
+        <h3>Post</h3>
+        <form method="POST", enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}      
+            {{ form.as_p }}                 
+            <button type="submit">Post</button>
+        </form>
+        {% endblock %}
+    </body>
+</html>

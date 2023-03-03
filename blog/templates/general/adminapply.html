@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Application</title>
+    </head>
+    <body>
+        <h2>Admin Application</h2>
+        <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}   
+            <input type="submit" value="Apply">
+        </form><br>
+        <a href="{% url 'index' %}">Back</a>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Post Hate</title>
+        {% extends 'general/base.html' %}
+    </head>
+    <body>
+        {% block content %}
+        <h2>{{post.title}}</h2>
+            <p><strong>{{ number_of_dislikes }} Hate{{number_of_dislikes|pluralize}}</strong>
+            {% if post.writer == request.user %}
+                <br><hr><br>
+                You cannot hate your posts nigga
+                <br><br><hr>
+            {% else %}
+            <form method="POST" action="{% url 'dislike_disliker' post.id %}">
+                {% csrf_token %}
+                {% if post_is_disliked %}
+                    <button type="submit" name="post_id" value="{{post.id}}">Unhate</button>
+                {% else %}
+                    <button type="submit" name="post_id" value="{{post.id}}">Hate</button>
+                {% endif %}
+            </form>
+            {% endif %}
+            </p>
+            <br>
+        {% if post.dislikes.all %}
+        <h3>Post Hated By:</h3>
+            {% for user in post.dislikes.all %}
+                {% if user == request.user %}
+                    {{forloop.counter}} - <a href="{% url 'profile' user.pk %}">{{user.username}} (You)</a><br><br>
+                {% else %}
+                    {{forloop.counter}} - <a href="{% url 'profile' user.pk %}">{{user.username}}</a><br><br>
+                {% endif %}
+            {% endfor %}<br>
+        {% else %}
+            <p>This post has no hates at the moment</p><br>
+        {% endif %}
+        <a href="{% url 'detailview' post.pk %}">Back To Post</a>
+        {% endblock %}
+    </body>
+</html>

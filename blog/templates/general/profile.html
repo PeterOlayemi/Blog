@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    {% extends 'general/base.html' %}
+    {% load static %}
+</head>
+<body>
+    {% block content %}
+        <h2>User Profile</h2>{% if user.id == request.user.id %} <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'edit_profile' user.id %}">Edit Profile ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'password_change' %}">Change Password</a><br><br>{% endif %}
+        <p>Username: {{user.username}}</p>
+        <p>User Type: {{user_type}}</p>
+        <p>Display Picture: &nbsp;  &nbsp;  &nbsp; <img src="{{ user.picture.url }}" class="img-responsive" style="width:15%; height:30%" /></p>
+        <p>First Name: {{user.first_name}}</p>
+        <p>Last Name: {{user.last_name}}</p>
+        <p>Gender: {{user.gender}}</p>
+        <p>Email Address: {{user.email}}</p>
+        <p>Phone Number: {{user.phone_number}}</p>
+        <p>State: {{user.state}}</p>
+        {% if user.is_writer == True %}
+            <p>Year Of Graduation: {{writer.year_of_graduation}}</p>
+            <p>School: {{writer.school}}</p>
+            <p>Qualification: {{writer.qualification}}</p>
+        {% else %}
+            <p>Bio: {{reader.bio}}</p>
+        {% endif %}
+    {% endblock %}
+</body>
+</html>

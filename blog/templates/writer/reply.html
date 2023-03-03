@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Reply Comment</title>
+      {% extends 'general/base.html' %}
+   </head>
+   <body>
+      {% block content %}
+        <h2>Reply Comment</h2>
+         <form action="" method="POST" id="main_form" class="comment_form">
+            <div>
+               <input type="text" name="content" style="height: 70px; width: 400px;"> &nbsp; <input type="hidden" value="{{ comment.pk }}" name="parent"> {% csrf_token %} {{form.media}}<input type="submit" value="Reply"></div>
+            </div>
+         </form>
+      {% endblock %}
+   </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Delete Post</title>
+        {% extends 'general/base.html' %}
+        {% load static %}
+    </head>
+    <body>
+        {% block content %}
+            <form method="post">
+                {% csrf_token %}
+                <h3>Do you want to delete the post "{{post.title}}" added on <img src = "{% static 'admin/img/icon-calendar.svg' %}"> "{{post.date_added}}"</h3><br><br>
+                <input type="submit" value="Delete"> <a href="../..">Cancel</a>
+            </form>
+        {% endblock %}
+    </body>
+</html>

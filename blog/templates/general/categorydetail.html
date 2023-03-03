@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Category Detail</title>
+        {% extends 'general/base.html' %}
+        {% load static %}
+    </head>
+    <body>
+        {% block content %}
+
+            {% if cat.area == 'Politics' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Politics' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Sport' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Sport' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Culture' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Culture' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Food' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Food' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Religion' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Religion' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Valentine' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Valentine' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Celebrity' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Celebrity' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Cricket' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Cricket' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Easter' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Easter' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Fashion' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Fashion' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Football' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Football' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'HouseHold' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'HouseHold' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Lent' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Lent' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == '2023 Elections' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == '2023 Elections' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Show' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Show' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Society' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Society' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Tourism' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Tourism' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Weather' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Weather' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == '2023 Yam Festival' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == '2023 Yam Festival' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+
+            {% if cat.area == 'Others' %}
+
+                <h2>Category: {{cat.area}}</h2><br>
+                <h3>Posts</h3>
+                {% for post in post %}
+                    {% if post.category.area == 'Others' %}
+                        <p>
+                            - <a href="{% url 'detailview' post.pk %}">{{post.title}}</a>
+                            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+                                {% if post.writer == request.user %}
+                                    <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+                                {% endif %}</p>
+                        </p><br>
+                    {% endif %}
+                {% empty %}
+                    <p>Damn, no post on this category at the moment. Kindly bear with us.</p>
+                {% endfor %}
+
+            {% endif %}
+        <br>
+        <a href="{% url 'category' %}">Back To Category</a>
+
+        {% endblock %}
+    </body>
+</html>

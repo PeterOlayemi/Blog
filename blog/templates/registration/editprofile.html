@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit Profile</title>
+    </head>
+    <body>
+        <h2>Edit Your {{ user_type|title }} Profile</h2>
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form1.as_p }}
+        {{ form2.as_p }}
+        <button type="submit">Save</button>
+        </form>
+        <a href="{% url 'profile' user.pk %}">Back</a>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Categories</title>
+        {% extends 'general/base.html' %}
+        {% load static %}
+    </head>
+    <body>
+        {% block content %}
+            <h2>Categories({{catcount}})</h2>
+            {% for cat in cat %}
+                <p style="font-size: large;"><a href="{% url 'category_detail' cat.pk %}">{{cat.area}}</a></p>
+            {% empty %}
+                <p>No Category At The Moment</p>
+            {% endfor %}
+        {% endblock %}
+    </body>
+</html>

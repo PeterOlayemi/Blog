@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Comment Delete</title>
+        {% extends 'general/base.html' %}
+        {% load static %}
+    </head>
+    <body>
+        {% block content %}
+
+            <form method="post">
+                {% csrf_token %}
+                <h3>Do you want to delete the comment "{{com.content|safe}}" added on <img src = "{% static 'admin/img/icon-calendar.svg' %}"> "{{com.date_added}}"</h3><br><br>
+                <input type="submit" value="Delete"> <a href="{% url 'detailview' post.id %}">Cancel</a>
+            </form>
+
+        {% endblock %}
+    </body>
+</html>

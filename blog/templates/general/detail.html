@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Post Detail</title>
+        {% extends 'general/base.html' %}
+        {% load static %}
+    </head>
+    <body>
+        {% block content %}
+
+            <h2>{{post.title}}</h2>
+            <p style="font-size: larger;">Category: <a href="{% url 'category_detail' post.category.pk %}">{{post.category}}</a></p>
+            <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
+            {% if post.writer == request.user %}
+                <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>
+            {% endif %}</p><br>
+            {% if post.image %}
+                <div style="text-align: center;"><img src="{{ post.image.url }}" class="img-responsive" style="width:70%; height:70%" /></div>
+            {% endif %}
+            <p>{{post.post|safe}}</p>
+            <p>...Thanks For Reading...</p><br><hr><br>
+            {% if post.writer == request.user %}
+                You cannot like/hate your posts nigga<br><br>
+            {% else %}
+                <form method="POST" action="{% url 'post_like' post.id %}">
+                    {% csrf_token %}
+                    {% if post_is_liked %}
+                        <button type="submit" name="post_id" value="{{post.id}}">Unlike</button>
+                    {% else %}
+                        <button type="submit" name="post_id" value="{{post.id}}">Like</button>
+                    {% endif %}
+                </form>
+                <form method="POST" action="{% url 'post_dislike' post.id %}">
+                    {% csrf_token %}
+                    {% if post_is_disliked %}
+                        <button type="submit" name="post_id" value="{{post.id}}">Unhate</button>
+                    {% else %}
+                        <button type="submit" name="post_id" value="{{post.id}}">Hate</button>
+                    {% endif %}
+                </form>
+            {% endif %}
+                <hr><br>
+                <a href="{% url 'liker' post.pk %}"><strong>{{ number_of_likes }} Like{{number_of_likes|pluralize}}</strong></a> &nbsp; &nbsp; <a href="{% url 'disliker' post.pk %}"><strong>{{ number_of_dislikes }} Hate{{ number_of_dislikes|pluralize }}</strong></a> &nbsp; &nbsp; <a href="#comment"><strong>{{com_count}} Comment{{com_count|pluralize}}</strong></a>
+            <br><br><hr>
+            {% if user.is_reader == True %}
+                <h2>Add Comment</h2>
+                <form method="post" id="main_form" class="comment_form">
+                <div>
+                    {{form.media}}
+                    {{ form.content }} {% csrf_token %} <input type="submit" value="Comment">
+                </div>
+                </form><br>
+            {% else %}
+                <p>Sorry, Writers are not allowed to add comment</p><hr><br>
+            {% endif %}
+
+            <h2>Comments ({{com_count}})</h2>
+            <a href="#" name="comment"></a>
+            {% for comment in comment %}
+                {% if comment.is_parent %}
+                    <p style="font-size:large">- {{comment.content|safe}} </p>
+                    <p><i>{% if comment.writer == request.user %}<a href="{% url 'profile' comment.writer.pk %}">{{comment.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' comment.writer.pk %}">{{comment.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{comment.date_updated}}</i>
+                    {% if comment.writer == request.user %}
+                        <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'comment_delete' comment.pk post.id %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'edit_comment' post.pk comment.id %}">Edit</a>
+                    {% elif post.writer == request.user %}
+                        <a href="{% url 'reply_view' post.pk comment.id %}">Reply</a>
+                    {% endif %}</p>
+                {% endif %}
+                {% for replies in comment.children %}
+                    <div style="padding-left: 3%;">
+                        <p style="font-size:large">- {{replies.content|safe}}</p>
+                        <p><i>{% if replies.writer == request.user %}<a href="{% url 'profile' replies.writer.pk %}">{{replies.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' replies.writer.pk %}">{{replies.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{replies.date_updated}}</i>
+                        {% if replies.writer == request.user %}
+                            <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'comment_delete' replies.pk post.id %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'reply_edit' post.pk comment.id replies.uuid %}">Edit</a>
+                        {% elif comment.writer == request.user %}
+                            <a href="{% url 'reply_view' post.pk comment.id %}">Reply</a>
+                        {% elif post.writer == request.user %}
+                            <a href="{% url 'reply_view' post.pk comment.id %}">Reply</a>
+                        {% endif %}</p>
+                    </div>
+                {% endfor %}
+            {% empty %}
+                <p>Damn, no comment at the moment. Kindly bear with us.</p>
+            {% endfor %}
+
+        {% endblock %}
+    </body>
+</html>

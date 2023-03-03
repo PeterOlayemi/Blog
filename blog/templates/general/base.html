@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+    </head>
+    <body>
+        <br><br><br>
+        <h1>Builder's Blog</h1>
+
+        {% if user.is_authenticated %}
+            <p>Hey <a href="{% url 'profile' user.pk %}">{{ request.user.username|title}}!</a>&nbsp;&nbsp;&nbsp;<img src = "{% static 'admin/img/icon-alert.svg' %}"> <a href="{% url 'logout' %}">Log Out</a></p>
+            <img src = "{% static 'admin/img/icon-viewlink.svg' %}"> <a href="{% url 'index' %}">Home ||</a> <a href="{% url 'about' %}">About Us ||</a> <a href="{% url 'contact' %}">Contact Us</a>
+            <br><hr><br>
+
+            {% block content %}
+
+            {% endblock %}
+
+        {% else %}
+
+        <p>
+        If you already have an account, go ahead and <a href="{% url 'login' %}">Log In</a>.<br><br>
+        If you are new to Builder's Blog, get started by creating a <a href="{% url 'reader_register' %}">Reader Account</a> 
+        to read and enjoy all our awesome posts based on your interests<br><br>
+        You can also create a <a href="{% url 'writer_register' %}">Writer Account</a> if you are  passionate and ready to post 
+        articles on our blog.<br><br>
+        You can also apply to <a href="{% url 'admin_apply' %}">Become Admin</a> if you are interested in partaking in the management of Builder's Blog. <b>Note That:</b>Your application to become admin is scrutinized by our team and only successful applicants will contacted within 30 days of application.<br><br>
+        <a href="{% url 'about' %}">About Us ||</a> <a href="{% url 'contact' %}">Contact Us</a>
+        <br><br></p>
+
+        {% endif %}
+
+        <hr>
+        <div align="center"><i>Peter Olayemi || <a href="{% url 'contact' %}">Contact Us</i></div>
+    </body>
+</html>

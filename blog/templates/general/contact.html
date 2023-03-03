@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact</title>
+    </head>
+    <body>
+        <br><br><br>
+        <h1>Builder's Blog</h1>
+        <a href="{% url 'index' %}">Home ||</a> <a href="{% url 'about' %}">About Us ||</a> <a href="{% url 'contact' %}">Contact Us</a>
+        <br><hr><br>
+
+        <h2>Contact Builder's Blog</h2>
+
+        Dear Esteemed User,<br>If you have any questions, reviews or criticisms, you can always reach us through the following channels:<br><br>
+        <ul>
+            <li><p>Facebook: <a href="{{obj.facebook}}">Here</a></p></li>
+            <li><p>WhatsApp: <a href="{{obj.whatsapp}}">Here</a></p></li>
+            <li><p>Twitter: <a href="{{obj.twitter}}">Here</a></p></li>
+            <li><p>Instagram: <a href="{{obj.instagram}}">Here</a></p></li>
+            <li><p>GitHub: <a href="{{obj.github}}">Here</a></p></li>
+        </ul>
+    </body>
+</html>
