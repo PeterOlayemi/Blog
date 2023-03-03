@@ -26,10 +26,10 @@ class UserModel(UserAdmin):
     )
 
 admin.site.register(User, UserModel)
+admin.site.register(Category)
+admin.site.register(ContactModel)
+admin.site.register(Admin)
 admin.site.register(Writer)
 admin.site.register(Reader)
 admin.site.register(Post)
 admin.site.register(Comment)
-admin.site.register(Category)
-admin.site.register(ContactModel)
-admin.site.register(Admin)

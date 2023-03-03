@@ -48,7 +48,7 @@ class ReaderSignUpForm(UserCreationForm):
     picture = forms.FileField(label='Profile Picture', required=True)
 
 #readermodel
-    bio = forms.CharField(max_length=199, label='Short Description',
+    bio = forms.CharField(max_length=199, label='Short Bio',
             widget=forms.Textarea(attrs={'rows':5,'cols':50}))
     
     class Meta:
