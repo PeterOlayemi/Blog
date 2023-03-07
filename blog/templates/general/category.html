@@ -9,7 +9,7 @@
         {% block content %}
             <h2>Categories({{catcount}})</h2>
             {% for cat in cat %}
-                <p style="font-size: large;"><a href="{% url 'category_detail' cat.pk %}">{{cat.area}}</a></p>
+                <p style="font-size: large;"><a href="{% url 'category_detail' cat.area %}">{{cat.area}}</a></p>
             {% empty %}
                 <p>No Category At The Moment</p>
             {% endfor %}

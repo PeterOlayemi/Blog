@@ -9,7 +9,7 @@
         {% block content %}
 
             <h2>{{post.title}}</h2>
-            <p style="font-size: larger;">Category: <a href="{% url 'category_detail' post.category.pk %}">{{post.category}}</a></p>
+            <p style="font-size: larger;">Category: <a href="{% url 'category_detail' post.category.area %}">{{post.category}}</a></p>
             <p><i>{% if post.writer == request.user %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}} (You)</a>{% else %}<a href="{% url 'profile' post.writer.pk %}">{{post.writer.username|title}}</a>{% endif %} || <img src = "{% static 'admin/img/icon-calendar.svg' %}"> {{post.date_updated}}</i>
             {% if post.writer == request.user %}
                 <img src = "{% static 'admin/img/icon-deletelink.svg' %}"> <a href="{% url 'post_delete' post.pk %}">Delete ||</a> <img src = "{% static 'admin/img/icon-changelink.svg' %}"> <a href="{% url 'post_update' post.pk %}">Edit</a>

@@ -253,9 +253,8 @@ def IndexView(request):
     return render(request, 'general/index.html', context)
 
 @login_required
-def CategoryDetailView(request, pk):
-    post = Post.objects.all().order_by('-date_updated')
-    cat = Category.objects.all().get(id=pk)
+def CategoryDetailView(request, cat):
+    post = Post.objects.filter(category__area=cat).order_by('-date_updated')
     context = {
         'post':post,
         'cat':cat
