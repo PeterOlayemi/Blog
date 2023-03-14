@@ -1,5 +1,7 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from ckeditor.fields import RichTextField
+from django.utils import timezone
+from django_countries.fields import CountryField
 
 from django.db import models
 import uuid
@@ -30,6 +32,34 @@ class Category(models.Model):
     
     def __str__(self):
         return self.area
+
+class UserManager(BaseUserManager):
+
+    def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
+        if not email:
+            raise ValueError('Users must have an email address')
+        now = timezone.now()
+        email = self.normalize_email(email)
+        user = self.model(
+            email=email,
+            is_staff=is_staff,
+            is_active=True,
+            is_superuser=is_superuser,
+            last_login=now,
+            date_joined=now,
+            **extra_fields
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, email=None, password=None, **extra_fields):
+        return self._create_user(email, password, False, False, **extra_fields)
+
+    def create_superuser(self, email, password, **extra_fields):
+        user = self._create_user(email, password, True, True, **extra_fields)
+        user.save(using=self._db)
+        return user
 
 GENDER = (
     ('Male', 'Male'),
@@ -76,23 +106,28 @@ STATE = (
     ('FCT', 'FCT'),
 )
 
-class User(AbstractUser):
+class User(AbstractBaseUser, PermissionsMixin):
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    last_login = models.DateTimeField(null=True, blank=True)
+    date_joined = models.DateTimeField(default=timezone.now)
     is_writer = models.BooleanField(default=False)
     is_reader = models.BooleanField(default=False)
     first_name = models.CharField(max_length=99)
     last_name = models.CharField(max_length=99)
     username = models.CharField(max_length=99, unique=True)
     email = models.EmailField(max_length=249, unique=True)
-    phone_number = models.CharField(max_length=11)
-    age = models.CharField(max_length=2)
     picture = models.FileField(upload_to='images/', blank=True, null=True)
-    address = models.CharField(max_length=99)
     gender = models.CharField(choices=GENDER, max_length=9)
+    country = CountryField(multiple=False)
     state = models.CharField(choices=STATE, max_length=49)
 
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    objects = UserManager()
     
 QUAL = (
     ('B.Sc', 'B.Sc'),

@@ -53,7 +53,7 @@ class ReaderSignUpForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'phone_number', 'gender', 'age', 'state', 'address', 'picture']
+        fields = ['username', 'first_name', 'last_name', 'email', 'gender', 'country', 'state', 'picture']
         
     def save(self):
         user = super().save(commit=False)
@@ -78,7 +78,7 @@ class WriterSignUpForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'phone_number', 'gender', 'age', 'state', 'address', 'picture']
+        fields = ['username', 'first_name', 'last_name', 'email', 'gender', 'country', 'state', 'picture']
 
     @transaction.atomic
     def save(self):
@@ -101,7 +101,7 @@ class UserForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'phone_number', 'gender', 'age', 'state', 'address', 'picture']
+        fields = ['username', 'first_name', 'last_name', 'email', 'gender', 'country', 'state', 'picture']
 
 class WriterForm(forms.ModelForm):
     

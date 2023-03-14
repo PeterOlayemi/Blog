@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     
     'blog.apps.BlogConfig',
     'ckeditor',
+    'django_countries'
 ]
 
 MIDDLEWARE = [

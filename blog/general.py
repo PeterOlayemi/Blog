@@ -34,7 +34,7 @@ def LoginView(request):
     return render(request, 'registration/login.html', {'form': form, 'msg': msg})
 
 class ContactView(ListView):
-    queryset = ContactModel.objects.all().get(id=1)
+    queryset = ContactModel.objects.all()
     context_object_name = 'obj'
     template_name = 'general/contact.html'
 

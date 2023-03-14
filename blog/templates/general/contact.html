@@ -13,11 +13,13 @@
 
         Dear Esteemed User,<br>If you have any questions, reviews or criticisms, you can always reach us through the following channels:<br><br>
         <ul>
+        {% for obj in obj %}
             <li><p>Facebook: <a href="{{obj.facebook}}">Here</a></p></li>
             <li><p>WhatsApp: <a href="{{obj.whatsapp}}">Here</a></p></li>
             <li><p>Twitter: <a href="{{obj.twitter}}">Here</a></p></li>
             <li><p>Instagram: <a href="{{obj.instagram}}">Here</a></p></li>
             <li><p>GitHub: <a href="{{obj.github}}">Here</a></p></li>
+        {% endfor %}
         </ul>
     </body>
 </html>
